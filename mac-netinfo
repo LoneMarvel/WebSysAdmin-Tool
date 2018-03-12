@@ -1,0 +1,10 @@
+for i in $(networksetup -listnetworkserviceorder | grep -i device | awk -F',' '{print $2}' | awk '{print $2}' | sed -e 's/.$//g'); do 
+getIP=$(ipconfig getifaddr $i)
+if [[ $getIP != "" ]]; then
+ actDevice=$i
+fi
+done 
+myIP=$(ipconfig getifaddr $actDevice)
+myMacAddress=$(ifconfig en0 | grep ether | awk '{print $2}')
+echo -n 'IP Address Is --> ';echo $myIP
+echo -n 'MAC Address Is --> ';echo $myMacAddress

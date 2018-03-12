@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="{{ url_for('static', filename='css/materialicons.css') }}" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}"/>
+      <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <nav>
+      <div class="nav-wrapper orange">
+        <a href="/" class="brand-logo"><img src="{{ url_for('static', filename='images/zalando.png') }}"/></a>
+      <ul class="right hide-on-med-and-down">
+        <li><h4>HelpDesk Web Linux Sys Admin Tool</h4></li>
+      </ul>
+      </div>
+     </nav>
+    <!-- Dynamic TroubleShooting Section -->
+    <div class="row">
+      <div class="col s3">
+         <div class="collection">
+            <a href="diskSpace" class="collection-item">Display Disk Space</a>
+            <a href="freemem" class="collection-item">Display Memory Satus</a>
+            <a href="netinfo" class="collection-item">Display Network Device Information</a>
+            <a href="ping" class="collection-item">Test Connectivity With Ping Google DNS</a>
+          </div>
+      </div>
+      <!-- Dynamic TroubleShooting Section Ends Here -->
+      <div class="col s12 m8 17">
+        <div class="row">
+          <div class="col s8">
+            <div class="card-panel blue-grey darken-1">
+              <div class="card-content white-text">
+                {% block content %}{%endblock %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    </body>
+  </html>

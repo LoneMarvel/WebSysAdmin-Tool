@@ -1,0 +1,15 @@
+#!/bin/bash
+
+stdDev=$(ip r | grep default | awk '{print $5}')
+myIP=$(ip a s $stdDev | grep inet | awk '{print $2}' | head -n 1 | sed -e 's/.\{3\}$//g')
+macAddress=$(ip a s enp0s3 | grep ether | awk '{print $2}')
+netMaskIP=$(ip a s $stdDev | grep inet | awk '{print $2}' | head -n 1)
+myNetMask=$(ipcalc -m $netMaskIP)
+myDhcpServer=$(cat /var/lib/dhclient/dhclient.leases | grep -i dhcp-server | awk '{print $3}' | sed -e 's/.$//g')
+varDns=$(cat /etc/resolv.conf  | grep nameserver | awk '{print $2";"}')
+echo -n 'My IP Address Is --> ';echo $myIP
+echo -n 'Mac Address Is --> ';echo $macAddress
+echo -n 'NetMask --> ';echo $myNetMask | sed 's/NETMASK=//'
+echo -n 'Default Gateway --> ';ip r | grep default | awk '{print $3}'
+echo -n 'DHCP Server --> ';echo $myDhcpServer
+echo -n 'DNS Server(s) --> ';echo $varDns | sed -e 's/.$//g'

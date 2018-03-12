@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block sysContent %}
+<span class="card-title"><h3>Display Ping To Public Google DNS Result</h3></span>
+{% for i in cmdOut.split('\n') %}
+  <p>{% print i %}</br></p>
+{%endfor %}
+{% endblock %}
